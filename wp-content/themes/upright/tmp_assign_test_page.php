@@ -17,7 +17,14 @@ $sql="SELECT fname, lname, email_id, phone_no, password, course_name from studen
 		$course_name = $result["course_name"];
 
 	}
-?>
+
+
+
+    if(isset($_POST['save'])) {
+    	$rs="insert into assign_test_tbl(student_id, test_category, assigned_date) values ('".$_POST['student_id']."', '".$_POST['test']."','".$_POST['datetime']."')";
+    	$result=mysqli_query($conn,$rs)or die(mysqli_error($conn));
+	}
+?>	
 
 <?php
 get_header();
@@ -92,7 +99,7 @@ get_header();
 							</tr>	
 							<tr>
 								<td><label for = "Date and Time">Date And Time : </label></td>
-								<td><input type = "date" name = "datetime" id="datetime" class = "input_buttons1" min = "01/01/1990" max = "31/12/2050" required = "required"></td>
+								<td><input type = "datetime-local" name = "datetime" id="datetime" class = "input_buttons1" min = "01/01/1990" max = "31/12/2050" required = "required"></td>
 							</tr>	
 							<tr>
 								<td>&nbsp;</td>
@@ -102,10 +109,7 @@ get_header();
 								<input type = "submit" value = "Assign Test" id = "submit" name = "save" title = "Assign Test" onclick = "assignTest()">
 								<input type = "reset" name = "reset" id ="reset"></td>
 							</tr>
-							<tr>
-								<td><input type = "hidden" name = "test_category_id" value = "<?php echo $test_category_id; ?>"> 
-								</td>
-							</tr>
+							
   						</table>       
   					</div>
            
@@ -164,6 +168,7 @@ if(isset($_POST['save'])) {
 		$message = "<html><body>";
 		$message.="<h3> Hi ". $_POST['fname']." ".$_POST['lname']."<br>";
 		$message.="Following are your test details. Please login to the following link and use following credentials to start the Test..<br> All The Best.!!!</h3><br>";
+		$message.="Student Id : ". $_POST['student_id']."<br>";
 		$message.="Username : ". $_POST['email_id']."<br>";
 		$message.="Password : ". $_POST['password']."<br>";
 		$message.="Test : ". $_POST['test']."<br>";

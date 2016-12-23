@@ -22,7 +22,7 @@ include_once("connection.php");
 							 <br> Please Read the following Instructions Carefully.. <br>
 							 </td></tr>';
 							 
-							$sql="SELECT instructions from test_category where test_category_id = '". $_SESSION['test_category_id'] . "';";
+							$sql="SELECT instructions from test_category where test_category_id = '". $_GET['test_category_id'] . "';";
 							$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 							/* $id = $_GET['test_category_id'];
 							 $student_id = $_Get['student_id'];

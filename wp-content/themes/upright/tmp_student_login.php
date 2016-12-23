@@ -60,7 +60,6 @@ $_SESSION['student_login_status'] = 0;
 								die("Please Enter Password");
 							}
 
-							/*$rs = "SELECT s.email_id, s.password, a.test_category_id from student s , assign_test_tbl a WHERE s.student_id = a.student_id AND s.email_id = '$email_id' AND s.password = '$password'";*/
 							$rs="select * from student where email_id = '$email_id' and password = '$password'";
 							$result = mysqli_query($conn, $rs) or die(mysqli_error($conn));
 						
@@ -69,17 +68,15 @@ $_SESSION['student_login_status'] = 0;
 							
 							if($row['email_id']==$email_id && $row['password']==$password)
 							{
-								//$_SESSION['student_id'] = $row['student_id'];
-								//$_SESSION['test_caregory_id'] = $row['test_category_id'];
 								$student_id = $row['student_id'];
 								$test_category_id = $row['test_category_id'];									 	  	
-								$_SESSION['student_login_status'] = 1;
+								//$_SESSION['student_login_status'] = 1;
 							?>
+
 							<script type="text/javascript">
 							var student_id = "<?php echo $student_id; ?>";
 							var test_category_id = "<?php echo $test_category_id; ?>";
-							//var student_id = "<?php echo $_SESSION['student_id'];?>";
-							//var test_category_id = "<?php echo $_SESSION['test_category_id'];?>";
+							
 							window.location.href = 'http://localhost/wordpress_onlinetest/instructions-for-test?test_category_id='+test_category_id+' &student_id= '+student_id;
 							</script>
 							<?php
@@ -88,7 +85,7 @@ $_SESSION['student_login_status'] = 0;
 							{?>
 							
 							<script type="text/javascript">
-								//document.getElementById("message").style.visibility = "visible";
+								alert("Incorrect Username or Password");
 							</script>
 							<?php
 							}
@@ -98,6 +95,68 @@ $_SESSION['student_login_status'] = 0;
              </div>
 	</div>
 <?php get_footer(); ?>
+
+
+<script type="text/javascript">
+/*$(document).ready(function() {
+
+<?php 
+
+$created_date = "SELECT created FROM assign_test_tbl WHERE student_id='".$student_id."'";
+$res = mysqli_query($conn,$created_date);
+while ($row = mysqli_fetch_array($res)) {
+      	$created = $row['created'];
+ 
+    }
+
+$date_b = $_GET['date'];
+
+$interval = date_diff($created,$date_b);
+?>
+var interval = "<?php echo $interval;?>";
+alert(interval);
+//echo $interval->format('%h:%i:%s');
+	//$testDate = strtotime($_GET['date']);
+	//$currentDate =strtotime('now');
+
+	//$dateDiff = $currentDate-$testDate;
+	//$days_between = ceil(($testDate - $currentDate) / 86400);
+	//echo $days_between;
+	//echo $dateDiff / (60 * 60 * 24);
+
+
+
+	// when the link is clicked pull the information from the database and get the time
+// SQL goes here
+
+// this will give you the difference in seconds
+//$diff = time() - $testDate;
+
+// we'll pretend the time expires in 8 hours
+//$expires_in = 24 * 60 * 60;
+
+// for this example we'll pretend the expiration is 8 hours
+//if($diff <= $expires_in)
+//{
+  // has not been more then 8 hours
+//}
+//else
+//{
+  // has been more then 8 hours
+//var dateDiff = "<?php echo $days_between; ?>";
+//alert(dateDiff);
+//if (strtotime($testDate) >= (time() + 86400)) {
+//if(dateDiff<0) {
+	//alert("Your Test Time has been Expired. Please Contact to Admin.");
+	//window.location = 'http://localhost/wordpress_onlinetest/test-expires';
+//}
+
+
+
+});*/
+</script>
+
+
 
 <script type="text/javascript">
 $(document).ready(function() {

@@ -1,5 +1,5 @@
 <?php /* Template Name: tmp_student_logout */ ?>
-
+<?php session_start(); ?>
 <?php
 get_header(); ?>
 <!--div class = "top_btns" style="margin-bottom:10px;">
@@ -28,3 +28,4 @@ get_header(); ?>
 		</form>
 </div>
 <?php get_footer(); ?>
+<?php session_destroy(); ?>

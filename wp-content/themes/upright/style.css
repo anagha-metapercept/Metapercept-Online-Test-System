@@ -2875,20 +2875,11 @@ margin-top = -27px!important;
 
 /*css gor admin logout*/
 #frm_admin_logout #main_container {
-	height: auto;
-	min-height: 350px;
-	border: none!important;
-	width: 100%!important;
-}
-
-#frm_admin_logout #main_container #sub_container #admin_logout_table tr, td, th {
-	border: none!important;
-	padding: 10px;
-}
-
-#frm_admin_logout h2 {
 	color: blue;
+	margin-left:250px;
+	margin-top:150px;
 }
+
 /*css for admin logout*/
 
 
@@ -3827,7 +3818,7 @@ width : 100%;
 	float: right!important;
 }
 
-#frm_assign_test_page #main_container #sub_container #assign_test_table #submit, #reset, #update{
+#frm_assign_test_page #main_container #sub_container #assign_test_table #reset, #update, #submit{
 
 	background-color: rgba(25, 25, 25, 0.3)!important;
 	border-radius: 10px;
@@ -3838,6 +3829,9 @@ width : 100%;
     text-align: center;
     font-size: 14px;
     margin-left: 5px;
+}
+#frm_assign_test_page #main_container #sub_container #assign_test_table #submit{
+	width: 20%!important;
 }
 #frm_assign_test_page #main_container #sub_container #assign_test_table input, textarea, #dropdown {
 	float: left;
@@ -4071,3 +4065,11 @@ width : 100%;
 
 }
 /*css for update question page ends here*/
+
+
+/*css for End Test Page*/
+#frm_test_end #main_container {
+	margin-top: 150px!important;
+	margin-left: 250px;
+	color: blue;
+}

@@ -5,6 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  */
 ?>
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -46,7 +48,7 @@ function timerIncrement() {
 </head>
 
 <body <?php body_class(); ?>>
-	<?php session_start(); ?>
+	
 <div id="page" class="hfeed site"><div id="main" class="layout-<?php echo esc_attr( $mclass ); ?> site_wrapper">
 
 
