@@ -1,0 +1,11 @@
+<?php /* Template Name: tmp_delete_course_page */ ?>
+
+
+<?php
+include_once("connection.php");
+$id = $_GET['question_no'];
+$sql = "delete from questions where question_no = '". $id . "';";
+mysqli_query($conn,$sql);
+header('Location: http://localhost/wordpress_onlinetest/delete-course/');
+
+?>

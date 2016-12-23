@@ -1,0 +1,84 @@
+<?php /* Template Name: tmp_display_questions */ ?>
+<?php
+include_once("connection.php");?>
+
+<?php
+get_header();
+
+ ?>
+<div id="primary" class="content-area boxed">
+	<form id = "frm_display_questions" action = "" method = "post">
+		<div id = "main_container">
+			<div id = "sub_container">
+                <div id = "title" style = "color:blue; text-align:center;padding-top:-2px;"><h3>Test Conductor</h3></div>
+                <table border = "1px solid black">
+				
+				<?php
+
+        if(isset($_POST['next']))
+        {
+                $a=$_POST['a'];
+        }
+        if(!isset($a))
+        {
+                $a=0;
+        }
+        
+         $id = $_GET['test_category_id'];
+     $sql1="SELECT * FROM questions where test_category_id = '". $id . "' LIMIT 1 OFFSET $a"; /*order by RAND() LIMIT 1 OFFSET $a";*/
+        $result=mysqli_query($conn,$sql1) or die(mysqli_error($conn));
+        while ($row = mysqli_fetch_array($result))
+        {
+          $ques_no = $row['question_no'];
+          $ques = $row['question'];
+          $opt1 = $row['opt1'];
+          $opt2 = $row['opt2'];
+          $opt3 = $row['opt3'];
+          $opt4 = $row['opt4'];
+            echo "<tr><td width = '33.33%'><div id = 'status'></div></td>
+                  <td width = '33.33%'><div id = 'quest_no' style = 'text-align:center;'>Question No. : 1</div></td>
+                  <td width = '33.33%'><div>&nbsp;</div></td>
+            </tr>";
+            echo "<tr>";
+            echo "<td  colspan = '3'><div id = 'question' style = 'border:1px solid black!important; border-radius:5px; margin:2px; padding: 5px; height:100px;'>".$ques."</div></td></tr>";  
+            echo "<tr><td>1. <input type='radio' value='option1' name='answer' onclick = 'checkAnswer(this.value)'>" . " " . $opt1 . "</td></tr>";
+            echo "<tr><td>2. <input type='radio' value='option2' name='answer' onclick = 'checkAnswer(this.value)'>" . " " . $opt2 . "</td></tr>";
+            echo "<tr><td>3. <input type='radio' value='option3' name='answer' onclick = 'checkAnswer(this.value)'>" . " " . $opt3 . "</td></tr>";
+            echo "<tr><td>4. <input type='radio' value='option4' name='answer' onclick = 'checkAnswer(this.value)'>" . " " . $opt4 . "</td></tr>";	 
+        } 
+
+        $a=$a+1;
+        echo "<tr><td><input type='hidden' value='$ques_no' name='question_no'></td></tr>";
+        echo "<tr><td><input type='hidden' value='$a' name='a'></td></tr>";
+        echo "<tr><td><input type='submit' id = 'next' name='next' value='next'></td>";
+           echo "</tr>";        
+        ?>
+                        </table>
+  					</div>
+             </div>
+        </form>
+           
+	</div>
+
+
+ <?php get_footer(); ?>
+
+ 
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#next").click(function() {
+    var saveData = $.ajax({
+        type: 'POST',
+        url: "displayQuestions.php",
+        data: test_category_id="<?php echo $id; ?>",
+        dataType: "text",
+        success: function(resultData) { alert("Save Complete") }
+    });
+  saveData.error(function() { alert("Something went wrong"); });
+  });
+});
+
+</script>
